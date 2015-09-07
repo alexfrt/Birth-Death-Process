@@ -1,18 +1,13 @@
 package br.uece.ctmc.bdp;
 
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.math3.util.Precision;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import br.uece.ctmc.bdp.BirthDeathProcess;
-import br.uece.ctmc.bdp.InvalidBirthDeathMatrix;
-import br.uece.ctmc.bdp.InvalidBirthRate;
+import br.uece.ctmc.bdp.util.MatrixAssert;
 
 @RunWith(MockitoJUnitRunner.class)
 public class BirthDeathProcessValidationTestCase {
@@ -64,23 +59,15 @@ public class BirthDeathProcessValidationTestCase {
 	@Test
 	public void testDiscreteMatrixProcessing() throws Exception {
 		BirthDeathProcess birthDeathProcess = new BirthDeathProcess(new double[][] {{-2, 2}, {3, -3}});
-		assertMatrix(new double[][] { {0, 1}, {1, 0} }, birthDeathProcess.getDiscreteMarkovianMatrix());
+		MatrixAssert.assertMatrix(new double[][] { {0, 1}, {1, 0} }, birthDeathProcess.getDiscreteMarkovianMatrix());
 		
 		birthDeathProcess = new BirthDeathProcess(new double[][] {{-2, 2, 0}, {2, -4, 2}, {0, 2, -2}});
-		assertMatrix(new double[][] { {0, 1, 0}, {0.5, 0, 0.5}, {0, 1, 0} }, birthDeathProcess.getDiscreteMarkovianMatrix());
+		MatrixAssert.assertMatrix(new double[][] { {0, 1, 0}, {0.5, 0, 0.5}, {0, 1, 0} }, birthDeathProcess.getDiscreteMarkovianMatrix());
 		
 		birthDeathProcess = new BirthDeathProcess(new double[][] { {-2, 2, 0, 0}, {2, -4, 2, 0}, {0, 2, -4, 2}, {0, 0, 2, -2} });
-		assertMatrix(new double[][] { {0, 1, 0, 0}, {0.5, 0, 0.5, 0}, {0, 0.5, 0, 0.5}, {0, 0, 1, 0} }, birthDeathProcess.getDiscreteMarkovianMatrix());
+		MatrixAssert.assertMatrix(new double[][] { {0, 1, 0, 0}, {0.5, 0, 0.5, 0}, {0, 0.5, 0, 0.5}, {0, 0, 1, 0} }, birthDeathProcess.getDiscreteMarkovianMatrix());
 	}
 
-	public static void assertMatrix(double[][] expected, double[][] actual) {
-		assertEquals(expected.length, actual.length);
-		
-		for (int i = 0; i < expected.length; i++) {
-			assertArrayEquals(ArrayUtils.toObject(expected[i]), ArrayUtils.toObject(actual[i]));
-		}
-	}
-	
 	//Stationary distribution test...
 	
 	@Test
