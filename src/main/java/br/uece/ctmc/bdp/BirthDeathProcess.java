@@ -47,11 +47,11 @@ public class BirthDeathProcess {
 					}
 					
 					if (rate < 0) {
-						throw new InvalidBirthRate(String.format("Transition rate from state [%s] to [%s] is less than 0", i, j));
+						throw new InvalidBirthRateException(String.format("Transition rate from state [%s] to [%s] is less than 0", i, j));
 					}
 					
 					if (i < j && rate > rateMatrix[j][i]) {
-						throw new InvalidBirthRate(String.format("Birth rate from state [%s] to [%s] is greater than the death rate", i, j));
+						throw new InvalidBirthRateException(String.format("Birth rate from state [%s] to [%s] is greater than the death rate", i, j));
 					}
 				}
 				

@@ -34,22 +34,22 @@ public class BirthDeathProcessValidationTestCase {
 		new BirthDeathProcess(new double[][] {{-2, 1, 1}, {1, -2, 1}, {0, 1, -1}});
 	}
 	
-	@Test(expected = InvalidBirthRate.class)
+	@Test(expected = InvalidBirthRateException.class)
 	public void testInvalidBirthRate() throws InvalidBirthDeathMatrix {
 		new BirthDeathProcess(new double[][] {{4, -4}, {2, -2}});
 	}
 	
-	@Test(expected = InvalidBirthRate.class)
+	@Test(expected = InvalidBirthRateException.class)
 	public void testInvalidBirthRateWith2Stages() throws InvalidBirthDeathMatrix {
 		new BirthDeathProcess(new double[][] {{-4, 4}, {2, -2}});
 	}
 	
-	@Test(expected = InvalidBirthRate.class)
+	@Test(expected = InvalidBirthRateException.class)
 	public void testInvalidBirthRateWith3Stages() throws InvalidBirthDeathMatrix {
 		new BirthDeathProcess(new double[][] { {-2, 2, 0}, {1, -3, 2}, {0, 1, -1} });
 	}
 	
-	@Test(expected = InvalidBirthRate.class)
+	@Test(expected = InvalidBirthRateException.class)
 	public void testInvalidBirthRateWith4Stages() throws InvalidBirthDeathMatrix {
 		new BirthDeathProcess(new double[][] { {-2, 2, 0, 0}, {1, -3, 2, 0}, {0, 1, -3, 2}, {0, 0, 1, -1} });
 	}
