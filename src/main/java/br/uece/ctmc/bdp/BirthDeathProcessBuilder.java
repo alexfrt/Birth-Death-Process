@@ -13,10 +13,6 @@ public final class BirthDeathProcessBuilder {
 			throw new IllegalArgumentException("The lambda and mu values must be greater than 0");
 		}
 		
-		if (lambda > mu) {
-			throw new IllegalArgumentException("The lambda must be less than or equal to mu");
-		}
-		
 		double[][] matrix = new double[states][states];
 		
 		for (int i = 0; i < states; i++) {

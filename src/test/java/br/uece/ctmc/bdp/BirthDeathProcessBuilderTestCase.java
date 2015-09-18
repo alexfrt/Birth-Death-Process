@@ -9,11 +9,6 @@ public class BirthDeathProcessBuilderTestCase {
 	//Validation tests...
 	
 	@Test(expected = IllegalArgumentException.class)
-	public void testInvalidLambda() {
-		BirthDeathProcessBuilder.buildHomogeneousMatrix(20, 4, 3);
-	}
-	
-	@Test(expected = IllegalArgumentException.class)
 	public void testInvalidRate() {
 		BirthDeathProcessBuilder.buildHomogeneousMatrix(2, 0, 1);
 	}

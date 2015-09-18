@@ -4,12 +4,9 @@ import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.math3.util.Precision;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.runners.MockitoJUnitRunner;
 
 import br.uece.ctmc.bdp.util.MatrixAssert;
 
-@RunWith(MockitoJUnitRunner.class)
 public class BirthDeathProcessValidationTestCase {
 	
 	//Validation tests...
@@ -37,21 +34,6 @@ public class BirthDeathProcessValidationTestCase {
 	@Test(expected = InvalidBirthRateException.class)
 	public void testInvalidBirthRate() throws InvalidBirthDeathMatrix {
 		new BirthDeathProcess(new double[][] {{4, -4}, {2, -2}});
-	}
-	
-	@Test(expected = InvalidBirthRateException.class)
-	public void testInvalidBirthRateWith2Stages() throws InvalidBirthDeathMatrix {
-		new BirthDeathProcess(new double[][] {{-4, 4}, {2, -2}});
-	}
-	
-	@Test(expected = InvalidBirthRateException.class)
-	public void testInvalidBirthRateWith3Stages() throws InvalidBirthDeathMatrix {
-		new BirthDeathProcess(new double[][] { {-2, 2, 0}, {1, -3, 2}, {0, 1, -1} });
-	}
-	
-	@Test(expected = InvalidBirthRateException.class)
-	public void testInvalidBirthRateWith4Stages() throws InvalidBirthDeathMatrix {
-		new BirthDeathProcess(new double[][] { {-2, 2, 0, 0}, {1, -3, 2, 0}, {0, 1, -3, 2}, {0, 0, 1, -1} });
 	}
 	
 	//Discrete matrix test...
