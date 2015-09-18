@@ -98,14 +98,18 @@ public class BirthDeathProcess {
 		
 		constants[statesCount] = 1;
 		
-		RealMatrix coefficientsMatrix = new Array2DRowRealMatrix(coefficients, false);
-		RealVector constantsVector = new ArrayRealVector(constants, false);
-		RealVector resultVector = new SingularValueDecomposition(coefficientsMatrix).getSolver().solve(constantsVector);
-		
 		double[] result = new double[statesCount];
-		for (int i = 0; i < statesCount; i++) {
-			result[i] = resultVector.getEntry(i);
+		
+		try {
+			RealMatrix coefficientsMatrix = new Array2DRowRealMatrix(coefficients, false);
+			RealVector constantsVector = new ArrayRealVector(constants, false);
+			RealVector resultVector = new SingularValueDecomposition(coefficientsMatrix).getSolver().solve(constantsVector);
+			
+			for (int i = 0; i < statesCount; i++) {
+				result[i] = Math.max(0, resultVector.getEntry(i));
+			}
 		}
+		catch (RuntimeException e) {}
 		
 		return result;
 	}
